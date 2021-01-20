@@ -8,6 +8,11 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
+      video_id: {
+        type: Sequelize.INTEGER,
+        references: { model: 'users', key: 'id' },
+        onDelete: 'CASCADE',
+      },
       extension: {
         type: Sequelize.STRING
       },

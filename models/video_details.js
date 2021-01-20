@@ -10,10 +10,14 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // define association here
+      video_details.belongsTo(models.video, {
+        foreignKey: 'video_id',
+        as: 'video_details',
+      });
     }
   };
   video_details.init({
+    video_id: DataTypes.INTEGER,
     extension: DataTypes.STRING,
     aspect_ratio: DataTypes.STRING,
     ffprobe_metadata: DataTypes.JSON

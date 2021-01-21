@@ -13,7 +13,7 @@ router.get('/', async (ctx, next) => {
 });
 
 router.get('/videos', async (ctx, next) => {
-  ctx.body = await db.video.findAll();
+  ctx.body = await db.video.findAll({ include: ['video_details']});
 });
 
 app

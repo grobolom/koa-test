@@ -10,7 +10,7 @@ module.exports = {
       },
       video_id: {
         type: Sequelize.INTEGER,
-        references: { model: 'users', key: 'id' },
+        references: { model: 'videos', key: 'id' },
         onDelete: 'CASCADE',
       },
       extension: {

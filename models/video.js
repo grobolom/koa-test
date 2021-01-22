@@ -1,6 +1,6 @@
 'use strict';
 const {
-  Model
+  Model, Sequelize
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class video extends Model {
@@ -17,6 +17,11 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   video.init({
+    id: {
+      type: DataTypes.UUID,
+      primaryKey: true,
+      defaultValue: Sequelize.DataTypes.UUIDV4,
+    },
     title: DataTypes.STRING,
     description: DataTypes.STRING,
     author: DataTypes.STRING,

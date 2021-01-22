@@ -4,9 +4,9 @@ module.exports = {
     await queryInterface.createTable('videos', {
       id: {
         allowNull: false,
-        autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.INTEGER
+        type: Sequelize.DataTypes.UUID,
+        defaultValue: Sequelize.DataTypes.UUIDV4
       },
       title: {
         type: Sequelize.STRING

@@ -22,10 +22,25 @@ router.get("/videos/:uuid", async (ctx, next) => {
 router.get("/videos", async (ctx, next) => {
   const page_size = 5;
   const offset = (ctx.query.page ?? 0) * page_size;
+
+  const where = {};
+  if (ctx.query.aspect_ratio) {
+    where.video_details = {
+      aspect_ratio: ctx.query.aspect_ratio,
+    };
+  }
+
   ctx.body = await db.video.findAndCountAll({
+    where: where?.video,
     limit: page_size,
     offset,
-    include: ["video_details"],
+    include: [
+      {
+        model: db.video_details,
+        as: "video_details",
+        where: where?.video_details,
+      },
+    ],
   });
 });
 

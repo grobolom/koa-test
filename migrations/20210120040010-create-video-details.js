@@ -1,38 +1,38 @@
-'use strict';
+"use strict";
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('video_details', {
+    await queryInterface.createTable("video_details", {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
       },
       video_id: {
         type: Sequelize.UUID,
-        references: { model: 'videos', key: 'id' },
-        onDelete: 'CASCADE',
+        references: { model: "videos", key: "id" },
+        onDelete: "CASCADE",
       },
       extension: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
       },
       aspect_ratio: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
       },
       ffprobe_metadata: {
-        type: Sequelize.JSON
+        type: Sequelize.JSON,
       },
       createdAt: {
         allowNull: false,
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
       },
       updatedAt: {
         allowNull: false,
-        type: Sequelize.DATE
-      }
+        type: Sequelize.DATE,
+      },
     });
   },
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('video_details');
-  }
+    await queryInterface.dropTable("video_details");
+  },
 };

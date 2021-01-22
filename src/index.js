@@ -12,6 +12,10 @@ const koaBody = require('koa-body');
 const User = db.user;
 const Video = db.video;
 
+router.get('/videos/:uuid', async (ctx, next) => {
+  ctx.body = await db.video.findOne({where: { id: ctx.params.uuid }, include:['video_details']})
+});
+
 router.get('/videos', async (ctx, next) => {
   const page_size = 5;
   const offset = (ctx.query.page ?? 0) * page_size

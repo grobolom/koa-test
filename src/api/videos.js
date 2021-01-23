@@ -9,6 +9,7 @@ module.exports = {
       include: ["video_details"],
     });
   },
+
   async index(ctx, next) {
     const page_size = 5;
     const offset = (ctx.query.page ?? 0) * page_size;
@@ -70,7 +71,3 @@ module.exports = {
     ctx.body = video;
   },
 };
-
-// router.get("/videos/:uuid", );
-// router.get("/videos", });
-// router.post("/videos", );

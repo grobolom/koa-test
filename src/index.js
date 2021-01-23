@@ -14,6 +14,6 @@ app
   .use(handleExceptions)
   .use(router.routes());
 
-const server = app.listen(3000);
+const server = app.listen(6537);
 
 module.exports = server;

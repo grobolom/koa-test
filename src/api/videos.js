@@ -55,7 +55,7 @@ module.exports = {
     let video;
 
     try {
-      video = await Video.create(
+      video = await db.video.create(
         {
           title,
           description,

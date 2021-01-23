@@ -11,9 +11,13 @@ module.exports = {
   },
 
   async index(ctx, next) {
+    // TODO: extract to a constant?
     const page_size = 5;
+
+    // TODO: probably would be best to extract to a helper function or similar
     const offset = (ctx.query.page ?? 0) * page_size;
 
+    // TODO: consider also helper functioning this
     const where = {};
     if (ctx.query.aspect_ratio) {
       where.video_details = {
@@ -21,6 +25,7 @@ module.exports = {
       };
     }
 
+    // In the ideal world, I would probably make it optional to get the video details
     ctx.body = await db.video.findAndCountAll({
       where: where?.video,
       limit: page_size,
@@ -38,7 +43,9 @@ module.exports = {
   async create(ctx, next) {
     const { url, title, description, author } = ctx.request.body;
 
-    // need to validate that we have all of the above, skipping for now
+    // TODO: need to validate that we have all of the above, skipping for now
+    // This should definitely be abstracted out to our own helper functions.
+    // It's also probably not very secure to expose this directly.
     const probe_data = await probe(url);
 
     const duration = probe_data.streams[0].duration;

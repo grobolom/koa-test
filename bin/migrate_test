@@ -1,0 +1,4 @@
+#!/bin/bash
+
+NODE_ENV=test npx sequelize db:migrate:undo:all
+NODE_ENV=test npx sequelize db:migrate

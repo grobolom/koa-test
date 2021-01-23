@@ -2,6 +2,22 @@
 
 This is a simple Koa-based REST API.
 
+## Usage
+
+This can be run in development mode with:
+
+```
+yarn
+yarn start
+```
+
+Running in production is not fleshed out - many constants and secrets should be
+extracted out before doing this in a reproducible manner.
+
+The main function is to be able to fetch video metadata for video urls - if you `POST` to
+the `/videos` endpoint with a valid video URL, the video will be added to the database,
+along with `ffprobe` metadata on said video (streams, aspect ratio, duration, filesize, etc.).
+
 ## Routes
 ### Authentication
 ```
@@ -36,14 +52,15 @@ POST /videos
     - Uses ffprobe to determine video metadata, such as duration and aspect ratio.
 ```
 
-## Usage
-
-This can be run in development mode with:
+## Major Libraries Used
 
 ```
-yarn
-yarn start
+sequelize: database migrations, models, seeds
+jest: testing wrapper
+supertest: testing API endpoints easily
+bcrypt: for handling password hashing/verification
+jsonwebtoken: for making/checking JWTs for authentication
+koa: for the API
+koa-body: for automatic parsing of request bodies
+koa-router: for easy express-like routing
 ```
-
-Running in production is not fleshed out - many constants and secrets should be
-extracted out before doing this in a reproducible manner.

@@ -3,8 +3,7 @@
   "main": "src/index.js",
   "scripts": {
     "start": "nodemon src/index.js",
-    "test": "jest --watchAll",
-    "test-seed": "NODE_ENV=test sequelize-cli db:seed:undo; NODE_ENV=test sequelize-cli db:seed:all"
+    "test": "jest --watchAll"
   },
   "dependencies": {
     "bcrypt": "^5.0.0",

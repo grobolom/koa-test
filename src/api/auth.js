@@ -4,6 +4,7 @@ const bcrypt = require("bcrypt");
 const Exception = require("./exception");
 
 module.exports = {
+  // TODO: extract the secret for JWT into a constant/env var
   async register(ctx, next) {
     const { body } = ctx.request;
     const userData = {
@@ -27,12 +28,14 @@ module.exports = {
     };
   },
 
+  // TODO: extract the secret for JWT into a constant/env var
+  // TODO: add better error handling, with better messages here
   async login(ctx, next) {
     const { body } = ctx.request;
     const user = await db.user.findOne({ where: { username: body.username } });
 
     if (!user) {
-      ctx.throw(404, "user not found");
+      ctx.throw(404, "User not found");
     }
 
     const isValid = await bcrypt.compare(body.password, user.password);

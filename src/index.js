@@ -14,8 +14,6 @@ app
   .use(handleExceptions)
   .use(router.routes());
 
-app.listen(3000, () => {
-  console.log("listening on 3000");
-});
+const server = app.listen(3000);
 
-module.exports = app;
+module.exports = server;
